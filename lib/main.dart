@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/TapBoxA.dart';
+import 'package:flutterapp/customWidget/GradientButtonRoute.dart';
+
+import 'InheritedWidgetTest/InheritedWidgetTestRoute.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,7 +24,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute:"/",
+      routes: {
+        "inherited_test":(context)=> InheritedWidgetTestRoute(),
+        "custom_widget":(context)=>GradientButtonRoute(),
+        "/" : (context) => MyHomePage(title: 'Flutter Demo Home Page'),
+      },
+//      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -99,7 +108,18 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
-            TapBoxA()
+            TapBoxA(),
+            RaisedButton(
+              child: Text("inherited test"),
+              onPressed: () {
+                Navigator.pushNamed(context, "inherited_test");
+              },
+            ),RaisedButton(
+              child: Text("custom_widget"),
+              onPressed: () {
+                Navigator.pushNamed(context, "custom_widget");
+              },
+            )
           ],
         ),
       ),
